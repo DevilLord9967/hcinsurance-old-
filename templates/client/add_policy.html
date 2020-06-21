@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="jumbotron">
+        <div class="text-center">
+            <h1 class="display-3">Enter Policy Details</h1>
+        </div>
+    </div>
+    <section id="login" class="bg-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 mx-auto">
+                    <div class="card">
+                        <div class="card-header bg-dark text-white text-center">
+                            <h4>Add Policy</h4>
+                        </div>
+                        <div class="card-body">
+                            {% include 'partials/_warning.html' %}
+                            <!--Policy Details-->
+                            <h4 class="mb-3">Policy Details</h4>
+                            <form class="needs-validation" novalidate>
+                                <div class="row">
+                                    <div class="col-md-5 mb-3">
+                                        <label for="policy_no">Policy number</label>
+                                        <input type="number" class="form-control" name="policy_number" required>
+                                        <div class="invalid-feedback">
+                                            Please enter a valid policy number.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="plan_no">Plan number</label>
+                                        <input type="number" class="form-control" name="plan_number" required>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid plan number.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="mode">Mode<span class="text-muted"> of pay</span></label>
+                                        <select class="custom-select d-block w-100" id="state" name="mode" required>
+                                            <option value="">Choose...</option>
+                                            <option>YLY</option>
+                                            <option>HLY</option>
+                                            <option>QTY</option>
+                                            <option>MLY</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Mode of pay interval required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5 mb-3">
+                                        <label for="payterm">Paying Term</label>
+                                        <input type="number" class="form-control" name="payterm" required>
+                                        <div class="invalid-feedback">
+                                            Please enter paying term.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="matterm">Maturity Term</label>
+                                        <input type="number" class="form-control" required name="maturityterm">
+                                        <div class="invalid-feedback">
+                                            Please enter maturity termr.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 mb-3">
+                                        <label for="premium">Premium</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Rs</span>
+                                            </div>
+                                            <input type="text" class="form-control" id="username" name="premium"
+                                                   required>
+                                            <div class="invalid-feedback" style="width: 100%;">
+                                                Your Premium is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="policy_number">Date Of Commencement</label>
+                                        <div class="input-group">
+                                            <input type="date" class="form-control" id="username"
+                                                   placeholder="dd/mm/yyyy" name="doc" required>
+                                            <div class="invalid-feedback" style="width: 100%;">
+                                                Your DOC is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="mb-4">
+                                <button class="btn btn-primary btn-lg btn-block" type="submit" formmethod="POST">
+                                    Continue
+                                </button>
+                                {% csrf_token %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="{% static 'client/js/form-validation.js' %}"></script>
+{% endblock %}

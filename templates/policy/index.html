@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+    {% for list in policylist %}
+        {% if pid == list.id %}
+            <div class="jumbotron">
+                <div class="text-center">
+                    <h1 class="display-3">{{ list.name }}</h1>
+                </div>
+            </div>
+            <section id="login" class="bg-light py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 mx-auto">
+                            <div class="card">
+                                <div class="card-header bg-dark text-white">
+                                    <h4>{{ list.name }} {{ list.plan_number }}</h4>
+                                </div>
+
+                                <div class="card-body">
+                                    <!-- Center body-->
+                                    <h2 class="card-title">About/Benefits</h2>
+                                    <p class="card-text">{{ list.benefits }}</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Minimum Sum Assured:
+                                        Rs {{ list.min_sum |intcomma }}</li>
+                                    {% if  list.max_sum  == 0 %}
+                                        <li class="list-group-item">Maximum Sum Assured: No LIMIT (Depends Upon
+                                            income)
+                                        </li>
+                                    {% else %}
+                                        <li class="list-group-item">Maximum Sum
+                                            Assured: Rs {{ list.max_sum |intcomma }}</li>
+                                    {% endif %}
+                                    {% if list.min_age < 0 %}
+                                        <li class="list-group-item">Minimum Age Required: {{ list.min_age }} days</li>
+                                    {% else %}
+                                        <li class="list-group-item">Minimum Age Required: {{ list.min_age }} years</li>
+                                    {% endif %}
+                                    <li class="list-group-item">Maximum Age Required: {{ list.max_age }} years</li>
+                                    <li class="list-group-item">Minimum Payterm: {{ list.min_payterm }} years</li>
+                                    <li class="list-group-item">Maximum Payterm: {{ list.max_payterm }} years</li>
+                                </ul>
+                                <div class="card-body">
+                                    <a href="{% url 'index' %}" class="card-link">Back</a>
+                                    <a href="{% url 'contact' %}" class="card-link">Contact me for More details and
+                                        Inquiry</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </section>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

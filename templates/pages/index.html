@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+    <main role="main">
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-3">WELCOME!</h1>
+                <p>Get the best LIC Policies and advice<br> Here are some Featured Policies.</p>
+                <p><a class="btn btn-primary btn-lg" href="{% url 'about' %}" role="button">Learn more &raquo;</a></p>
+            </div>
+        </div>
+        <div class="container">
+            <!-- Example row of columns -->
+            <div class="row">
+                {% if policylist %}
+                    {% for list in policylist %}
+                        <div class="col-md-4">
+                            <h4>{{ list.name }}</h4>
+                            <ul>
+                                <li class="list-group-item">Minimum Sum Assured: Rs {{ list.min_sum |intcomma }}</li>
+                                {% if list.min_age < 0 %}
+                                    <li class="list-group-item">Minimum Age Required: {{ list.min_age }} days</li>
+                                {% else %}
+                                    <li class="list-group-item">Minimum Age Required: {{ list.min_age }} years</li>
+                                {% endif %}
+                                <li class="list-group-item">Minimum Payterm: {{ list.min_payterm }} years</li>
+                            </ul>
+                            <p><a class="btn btn-secondary" href="{% url 'policy' list.id %}" role="button">View details
+                                &raquo;</a></p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-md-6">
+                        <h2>Policies are currently not avialable</h2>
+
+                    </div>
+                {% endif %}
+            </div>
+            <hr>
+        </div>
+        <!--Paginator-->
+        <div class="container">
+            <nav aria-label="Page navigation example">
+                {% if policylist.has_other_pages %}
+                    <ul class="pagination">
+                        {% if policylist.has_previous %}
+                            <li class="page-item">
+                                <a href="?page={{ policylist.previous_page_number }}" class="page-link">&laquo;</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link">&laquo;</a>
+                            </li>
+                        {% endif %}
+                        {% for i in policylist.paginator.page_range %}
+                            {% if policylist.number == i %}
+                                <li class="page-item active">
+                                    <a class="page-link">{{ i }}</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                    <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if policylist.has_next %}
+                            <li class="page-item">
+                                <a href="?page={{ policylist.next_page_number }}" class="page-link">&raquo;</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link">&raquo;</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+            </nav>
+        </div>
+    </main>
+{% endblock %}
+{% block footer %}
+<p class="mb-2">Above Policy details have been taken from the official Website of LIC of India</p>
+{% endblock %}

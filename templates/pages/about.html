@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="jumbotron">
+        <div class="text-center">
+            <h1 class="display-3">ABOUT ME</h1>
+        </div>
+    </div>
+    <section id="login" class="bg-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 mx-auto">
+                    <div class="card">
+                        <div class="card-header bg-dark text-white text-center">
+                            <h4>HEMCHAND SINGHAL</h4>
+                        </div>
+                        <img src="{% static 'pages/img/about.jpg' %}" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h2 class="card-title text-center">Senior LIC Insurance Advisor</h2>
+                            <p class="card-text">Branch 12B, Jasola Vihar, New Delhi</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><h5>GroundBreaking Achievements</h5>
+                                <ul>
+                                    <li>Gold Medalist</li>
+                                    <li>MDRT (Million Dollar Round of Table)</li>
+                                    <li>CM Club Member</li>
+                                </ul>
+                            </li>
+                            <li class="list-group-item">Over 17 years of Experience</li>
+                            <li class="list-group-item">Over 1000 Policy holders</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="{% url 'contact' %}" class="card-link">Contact Me</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

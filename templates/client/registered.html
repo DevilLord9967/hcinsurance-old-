@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+     <div class="jumbotron">
+        <div class="text-center">
+            <h1 class="display-3">Registered Successfully!!</h1>
+        </div>
+    </div>
+     <section id="login" class="bg-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 mx-auto">
+                    <div class="card">
+                        <div class="card-header bg-light text-dark">
+                            <h4>Thank You for Registering with Us!! <a href="{% url 'login' %}">Login here </a></h4>
+                            <p>Use your e-mail as Username and Policy number as your Password.
+                            <!--h6>NOTE :- </h6>FEATURE OF REGISTERATION OF DIFFERENT POLICIES OF SAME PERSON IS CURRENTLY UNAVIALABLE!!!</p-->
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="{% static 'client/js/form-validation.js'  %}"></script>
+{% endblock %}

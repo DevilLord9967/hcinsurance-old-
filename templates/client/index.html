@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="jumbotron">
+        <div class="text-center">
+            <h1 class="display-3">Welcome&nbsp;&nbsp;{{ user.first_name }}&nbsp;&nbsp;{{ user.last_name }}</h1>
+        </div>
+    </div>
+    <section id="dashboard" class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 mx-auto">
+                    <h2>Premium Receipts</h2>
+                    <p>Here are the premium reciepts of your policies</p>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Date Added</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <!-----------BODY--------->
+                        <tbody>
+                        {% if reciept %}
+                            <tr>
+                                {% for recpt in reciept %}
+                                    <td>{{ recpt.id }}</td>
+                                    <td>{{ recpt.date }}</td>
+                                    <td>
+                                        <a class="btn btn-light" href="{% url 'image' %}">View Reciept</a>
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td></td>
+                                <td>Not Avialable at the moment</td>
+                            </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-3">
+                    <h5>Your Registered Policies</h5>
+                <br>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Policy Number</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% if policy %}
+                            <tr>
+                            {% for plcy in policy %}
+                                <td>{{ plcy.policy_number }}
+                            {% endfor %}
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td>No Policies Registered
+                            </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                <a class="btn btn-primary" href="{% url 'add_policy'%}" role="button">Add Policy</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
